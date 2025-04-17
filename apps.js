@@ -1,64 +1,76 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Cargar tareas almacenadas
+    // Cargar tareas guardadas
     let tareas = JSON.parse(localStorage.getItem('tareas')) || [];
+    
+    // Elementos del DOM
     const inputTarea = document.getElementById('nuevaTarea');
     const agregarBtn = document.getElementById('agregarBtn');
     const listaTareas = document.getElementById('listaTareas');
-
+    
+    // Función para guardar tareas
+    function guardarTareas() {
+        localStorage.setItem('tareas', JSON.stringify(tareas));
+    }
+    
     // Función para renderizar tareas
     function renderizarTareas() {
-        listaTareas.innerHTML = tareas.map((tarea, index) => `
-            <li class="${tarea.completada ? 'completed' : ''}">
+        listaTareas.innerHTML = '';
+        
+        tareas.forEach((tarea, index) => {
+            const li = document.createElement('li');
+            li.className = tarea.completada ? 'completed' : '';
+            
+            li.innerHTML = `
                 <span>${tarea.texto}</span>
-                <div class="task-actions">
+                <div>
                     <button class="complete-btn" data-index="${index}">✓</button>
                     <button class="delete-btn" data-index="${index}">×</button>
                 </div>
-            </li>
-        `).join('');
-
-        // Agregar eventos a los botones de cada tarea
+            `;
+            
+            listaTareas.appendChild(li);
+        });
+        
+        // Agregar eventos a los botones
         document.querySelectorAll('.complete-btn').forEach(btn => {
             btn.addEventListener('click', function() {
-                const index = parseInt(this.getAttribute('data-index'));
+                const index = this.getAttribute('data-index');
                 tareas[index].completada = !tareas[index].completada;
                 guardarTareas();
                 renderizarTareas();
             });
         });
-
+        
         document.querySelectorAll('.delete-btn').forEach(btn => {
             btn.addEventListener('click', function() {
-                const index = parseInt(this.getAttribute('data-index'));
+                const index = this.getAttribute('data-index');
                 tareas.splice(index, 1);
                 guardarTareas();
                 renderizarTareas();
             });
         });
     }
-
-    // Función para agregar nueva tarea
+    
+    // Función para agregar tarea
     function agregarTarea() {
         const texto = inputTarea.value.trim();
-        if (texto) {
+        if (texto !== '') {
             tareas.push({ texto, completada: false });
             inputTarea.value = '';
             guardarTareas();
             renderizarTareas();
         }
     }
-
-    // Función para guardar en localStorage
-    function guardarTareas() {
-        localStorage.setItem('tareas', JSON.stringify(tareas));
-    }
-
-    // Event Listeners
+    
+    // Event listeners
     agregarBtn.addEventListener('click', agregarTarea);
+    
     inputTarea.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') agregarTarea();
+        if (e.key === 'Enter') {
+            agregarTarea();
+        }
     });
-
+    
     // Renderizar tareas al cargar
     renderizarTareas();
 });
