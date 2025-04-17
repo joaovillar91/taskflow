@@ -1,168 +1,93 @@
-:root {
-  /* Paleta morada principal */
-  --primary: #7b2cbf;       /* Morado vibrante */
-  --primary-dark: #5a189a;  /* Morado oscuro */
-  --primary-light: #9d4edd; /* Morado claro */
-  
-  /* Colores complementarios */
-  --secondary: #4cc9f0;    /* Azul claro */
-  --danger: #ef233c;       /* Rojo */
-  --success: #2ec4b6;      /* Verde turquesa */
-  
-  /* Escala de grises */
-  --white: #ffffff;
-  --light: #f8f9fa;
-  --medium: #e9ecef;
-  --dark: #212529;
-  --black: #000000;
-  
-  /* Bordes */
-  --border-radius: 8px;
-  --border-color: #dee2e6;
-}
-
-/* Reset básico */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
-  background-color: var(--light);
-  color: var(--dark);
-  padding: 20px;
-  min-height: 100vh;
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 20px;
+    color: #000000; /* Negro para texto principal */
 }
 
-/* Contenedor principal */
 .container {
-  max-width: 600px;
-  margin: 0 auto;
-  background-color: var(--white);
-  padding: 2rem;
-  border-radius: var(--border-radius);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Título */
 h1 {
-  color: var(--primary); /* Título en morado */
-  text-align: center;
-  margin-bottom: 1.5rem;
-  font-size: 2rem;
-  font-weight: 600;
+    color: #000000; /* Negro para título */
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-/* Grupo de entrada */
 .input-group {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 1.5rem;
+    display: flex;
+    margin-bottom: 20px;
 }
 
 #nuevaTarea {
-  flex: 1;
-  padding: 12px;
-  border: 2px solid var(--border-color);
-  border-radius: var(--border-radius);
-  font-size: 1rem;
-  transition: border-color 0.3s;
-}
-
-#nuevaTarea:focus {
-  outline: none;
-  border-color: var(--primary);
-}
-
-/* Botones */
-button {
-  cursor: pointer;
-  border: none;
-  border-radius: var(--border-radius);
-  font-weight: 500;
-  transition: all 0.3s;
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #000000; /* Negro para borde */
+    border-radius: 4px 0 0 4px;
+    font-size: 16px;
 }
 
 #agregarBtn {
-  background-color: var(--primary);
-  color: var(--white);
-  padding: 12px 20px;
-  font-size: 1rem;
+    background-color: #1E90FF; /* Azul para botón */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 0 4px 4px 0;
+    font-size: 16px;
+    transition: background-color 0.3s;
 }
 
 #agregarBtn:hover {
-  background-color: var(--primary-dark);
+    background-color: #0066CC; /* Azul oscuro hover */
 }
 
-/* Lista de tareas */
 #listaTareas {
-  list-style: none;
+    list-style: none;
+    padding: 0;
 }
 
 #listaTareas li {
-  padding: 15px;
-  border-bottom: 1px solid var(--border-color);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: background-color 0.3s;
+    background-color: #ffffff;
+    margin-bottom: 8px;
+    padding: 12px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #8B4513; /* Marrón para bordes */
 }
 
-#listaTareas li:hover {
-  background-color: var(--medium);
+#listaTareas li.completed span {
+    text-decoration: line-through;
+    color: #8B4513; /* Marrón para completadas */
 }
 
-/* Acciones de tareas */
-.task-actions {
-  display: flex;
-  gap: 8px;
+.task-actions button {
+    background-color: #1E90FF; /* Azul para botones */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin-left: 5px;
+    border-radius: 3px;
+    cursor: pointer;
 }
 
-.complete-btn, .delete-btn {
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  color: white;
-  font-size: 0.9rem;
-}
-
-.complete-btn {
-  background-color: var(--success);
+.task-actions button:hover {
+    background-color: #0066CC; /* Azul oscuro hover */
 }
 
 .delete-btn {
-  background-color: var(--danger);
+    background-color: #8B4513 !important; /* Marrón para eliminar */
 }
 
-.complete-btn:hover, .delete-btn:hover {
-  transform: scale(1.1);
-}
-
-/* Tarea completada */
-.completed {
-  text-decoration: line-through;
-  color: var(--primary-light);
-  opacity: 0.8;
-}
-
-/* Responsive */
-@media (max-width: 640px) {
-  .container {
-    padding: 1.5rem;
-  }
-  
-  .input-group {
-    flex-direction: column;
-  }
-  
-  #agregarBtn {
-    width: 100%;
-    padding: 12px;
-  }
+.delete-btn:hover {
+    background-color: #A0522D !important; /* Marrón oscuro hover */
 }
