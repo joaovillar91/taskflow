@@ -1,18 +1,14 @@
-// Esperar a que el DOM esté completamente cargado
 document.addEventListener('DOMContentLoaded', function() {
-    // Variables
     let tareas = JSON.parse(localStorage.getItem('tareas')) || [];
     const inputTarea = document.getElementById('nuevaTarea');
     const agregarBtn = document.getElementById('agregarBtn');
     const listaTareas = document.getElementById('listaTareas');
 
-    // Event Listeners
     agregarBtn.addEventListener('click', agregarTarea);
     inputTarea.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') agregarTarea();
     });
 
-    // Funciones
     function renderizarTareas() {
         listaTareas.innerHTML = tareas.map((tarea, index) => `
             <li class="${tarea.completada ? 'completed' : ''}">
@@ -24,7 +20,6 @@ document.addEventListener('DOMContentLoaded', function() {
             </li>
         `).join('');
 
-        // Agregar eventos a los botones
         document.querySelectorAll('.complete-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const index = this.getAttribute('data-index');
@@ -66,6 +61,5 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('tareas', JSON.stringify(tareas));
     }
 
-    // Inicializar
     renderizarTareas();
 });
