@@ -1,11 +1,11 @@
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
     background-color: #f5f5f5;
     margin: 0;
     padding: 20px;
 }
 
-.app-container {
+.container {
     max-width: 600px;
     margin: 0 auto;
     background-color: white;
@@ -17,15 +17,14 @@ body {
 h1 {
     color: black;
     text-align: center;
-    margin-bottom: 20px;
 }
 
-.input-container {
+.input-group {
     display: flex;
     margin-bottom: 20px;
 }
 
-.task-input {
+#nuevaTarea {
     flex: 1;
     padding: 10px;
     border: 2px solid black;
@@ -33,7 +32,7 @@ h1 {
     font-size: 16px;
 }
 
-.add-btn {
+#agregarBtn {
     background-color: #1E90FF;
     color: white;
     border: none;
@@ -41,19 +40,14 @@ h1 {
     cursor: pointer;
     border-radius: 0 4px 4px 0;
     font-size: 16px;
-    transition: background-color 0.3s;
 }
 
-.add-btn:hover {
-    background-color: #0066CC;
-}
-
-.task-list {
+#listaTareas {
     list-style: none;
     padding: 0;
 }
 
-.task-list li {
+#listaTareas li {
     background-color: white;
     margin-bottom: 8px;
     padding: 12px;
@@ -64,13 +58,7 @@ h1 {
     border: 1px solid #8B4513;
 }
 
-.task-list li.completed span {
-    text-decoration: line-through;
-    color: #8B4513;
-}
-
-.task-actions button {
-    background-color: #1E90FF;
+.complete-btn, .delete-btn {
     color: white;
     border: none;
     padding: 5px 10px;
@@ -79,14 +67,10 @@ h1 {
     cursor: pointer;
 }
 
-.task-actions button:hover {
-    background-color: #0066CC;
+.complete-btn {
+    background-color: #1E90FF;
 }
 
 .delete-btn {
-    background-color: #8B4513 !important;
-}
-
-.delete-btn:hover {
-    background-color: #A0522D !important;
+    background-color: #8B4513;
 }
